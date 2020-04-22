@@ -1,7 +1,6 @@
 package com.xlk.mvvm.viewmode
 
-import android.util.Log
-import android.util.Log.d
+import android.content.Context
 import androidx.databinding.ObservableField
 import com.xlk.mvvm.util.LogUtil
 import com.xlk.readdemo.RData
@@ -15,16 +14,18 @@ import java.util.*
 /**
  * Created by xlk on 2020/4/20.
  */
-class MainViewMode(info:RData){
+class MainViewMode(context: Context) {
+
+    val context = context
 
     /** **** **  data  ** **** **/
-    val title = ObservableField<String>(info.data?.title)
-    val author = ObservableField<String>(info.data?.author)
-    val content = ObservableField<String>(contentFormat(info.data?.content!!))
-    val predate = ObservableField<String>(info.data?.date?.prev)
-    val currdatestr = ObservableField<String>(getDate(info.data?.date?.curr!!))
-    val predatestr = ObservableField<String>(getDate(info.data?.date?.prev!!))
-    val today = SimpleDateFormat("yyyy年MM月dd日").format(Date())
+    val title = ObservableField<String>()
+    val author = ObservableField<String>()
+    val content = ObservableField<String>()
+    val predate = ObservableField<String>()
+    val currdatestr = ObservableField<String>()
+    val predatestr = ObservableField<String>()
+    var text_size = ObservableField<Float>(22f)
 
     /** **** **  binding  ** **** **/
     fun today() {
@@ -49,7 +50,7 @@ class MainViewMode(info:RData){
                         update(m)
                     }
                 } else {
-                    Log.e("cdck", "获取数据失败了")
+                    LogUtil.e("cdck", "获取数据失败了")
                     preDay()
                 }
             }
@@ -60,6 +61,7 @@ class MainViewMode(info:RData){
         })
     }
 
+    //获取前一天数据
     private fun preDay() {
         val sdf = SimpleDateFormat("yyyyMMdd")
         val date = sdf.parse(predate.get())
@@ -68,7 +70,7 @@ class MainViewMode(info:RData){
         instance.add(Calendar.DAY_OF_YEAR, -1)
         val time = instance.time
         val format = sdf.format(time)
-        Log.d("cdck", "获取失败的前一天数据 -> $format")
+        LogUtil.d("cdck", "获取失败的前一天数据 -> $format")
         predate.set(format)
         yesterday()
     }
@@ -85,13 +87,17 @@ class MainViewMode(info:RData){
 
     private fun contentFormat(content: String): String {
         val replace = content.replace("<p>", "\u3000\u3000")
-        return replace.replace("</p>", "\n")
+        return replace.replace("</p>", "\n\n")
     }
 
     private fun getDate(curr: String): String {
-        val y = curr.substring(0, 4) + "年"
-        val m = curr.substring(4, 6) + "月"
-        val d = curr.substring(6, curr.length) + "日"
+        val y = curr.substring(0, 4).plus("年")
+        val m = curr.substring(4, 6).plus("月")
+        val d = curr.substring(6, curr.length).plus("日")
         return y.plus(m).plus(d)
+    }
+
+    public fun setTextSize(px: Float) {
+        text_size.set(px)
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- single:组中只有一个菜单项可以checked (radio 按钮)-->
+    <!-- all:组中所有菜单项可checked (checkboxes)-->
+    <!-- none:组中所有菜单项都不可checked-->
+    <item
+        android:id="@+id/menu_today"
+        android:icon="@drawable/ic_today_16dp"
+        android:title="今日文章" />
+    <item
+        android:id="@+id/menu_yesterday"
+        android:icon="@drawable/ic_yesterday_16dp"
+        android:title="前日文章" />
+    <item
+        android:id="@+id/menu_random"
+        android:icon="@drawable/ic_random_16dp"
+        android:title="随机文章" />
+    <item
+        android:id="@+id/menu_collect"
+        android:icon="@drawable/ic_collect_16dp"
+        android:title="我的收藏" />
+    <item
+        android:id="@+id/menu_setting"
+        android:icon="@drawable/ic_settings_16dp"
+        android:title="阅读设置" />
+</menu>
