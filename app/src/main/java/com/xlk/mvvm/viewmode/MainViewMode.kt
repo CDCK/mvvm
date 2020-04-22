@@ -83,6 +83,7 @@ class MainViewMode(context: Context) {
         currdatestr.set(getDate(m.date?.curr!!))
         predatestr.set(getDate(prev!!))
         content.set(contentFormat(m.content!!))
+
     }
 
     private fun contentFormat(content: String): String {
