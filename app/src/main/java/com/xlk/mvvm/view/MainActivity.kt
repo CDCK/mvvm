@@ -13,23 +13,23 @@ import com.xlk.mvvm.ActivityMainBinding
 import com.xlk.mvvm.R
 import com.xlk.mvvm.ReadConfigBinding
 import com.xlk.mvvm.util.LogUtil
-import com.xlk.mvvm.viewmode.MainViewMode
-import com.xlk.mvvm.viewmode.ReadConfigViewMode
+import com.xlk.mvvm.viewmodel.MainViewModel
+import com.xlk.mvvm.viewmodel.ReadConfigViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var mBinding: ActivityMainBinding;
-    private lateinit var mReadBinding: ReadConfigBinding;
+    private lateinit var mViewModel: MainViewModel
 
-    private lateinit var mViewMode: MainViewMode
-    private lateinit var mReadConfigViewMode: ReadConfigViewMode
+    private lateinit var mReadConfigBinding: ReadConfigBinding;
+    private lateinit var mReadConfigViewModel: ReadConfigViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        mViewMode = MainViewMode(this)
-        mViewMode.today()
-        mBinding.vm = mViewMode
+        mViewModel = MainViewModel(this)
+        mViewModel.today()
+        mBinding.vm = mViewModel
 
         //解决侧滑中icon颜色一直是灰色问题
         navigation_view.itemIconTintList = null
@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     navigation_view.right + dm.widthPixels,
                     dm.heightPixels
                 )
-
             }
 
             override fun onDrawerClosed(drawerView: View) {
@@ -64,14 +63,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         menu_right.setOnClickListener { setting() }
         navigation_view.setNavigationItemSelectedListener(this)
-
     }
 
+    //侧滑菜单点击事件监听
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_today -> mViewMode.today()
-            R.id.menu_yesterday -> mViewMode.yesterday()
-            R.id.menu_random -> mViewMode.random()
+            R.id.menu_today -> mViewModel.today()
+            R.id.menu_yesterday -> mViewModel.yesterday()
+            R.id.menu_random -> mViewModel.random()
 //            R.id.menu_collect->mViewMode.random()
             R.id.menu_setting -> setting()
         }
@@ -80,11 +79,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setting() {
-        mReadBinding = DataBindingUtil.inflate(layoutInflater,R.layout.pop_read_config,null,false)
-        mReadConfigViewMode = ReadConfigViewMode(mViewMode)
-        mReadBinding.read = mReadConfigViewMode
+        mReadConfigBinding =
+            DataBindingUtil.inflate(layoutInflater, R.layout.pop_read_config, null, false)
+        mReadConfigViewModel = ReadConfigViewModel(mViewModel)
+        mReadConfigBinding.read = mReadConfigViewModel
         val pop = PopupWindow(
-            mReadBinding.root,
+            mReadConfigBinding.root,
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )

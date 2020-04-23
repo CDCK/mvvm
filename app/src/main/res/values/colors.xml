@@ -5,7 +5,9 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="black1">#5B5B5B</color>
 
     <drawable name="white">#FFFFFF</drawable>
     <drawable name="black">#000000</drawable>
+    <drawable name="black1">#5B5B5B</drawable>
 </resources>

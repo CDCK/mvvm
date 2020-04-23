@@ -1,8 +1,9 @@
-package com.xlk.mvvm.viewmode
+package com.xlk.mvvm.viewmodel
 
 import android.content.Context
 import androidx.databinding.ObservableField
 import com.xlk.mvvm.util.LogUtil
+import com.xlk.mvvm.util.sp2px
 import com.xlk.readdemo.RData
 import com.xlk.readdemo.RetrofitManager
 import retrofit2.Call
@@ -14,7 +15,7 @@ import java.util.*
 /**
  * Created by xlk on 2020/4/20.
  */
-class MainViewMode(context: Context) {
+class MainViewModel(context: Context) {
 
     val context = context
 
@@ -25,7 +26,7 @@ class MainViewMode(context: Context) {
     val predate = ObservableField<String>()
     val currdatestr = ObservableField<String>()
     val predatestr = ObservableField<String>()
-    var text_size = ObservableField<Float>(22f)
+    var text_size = ObservableField<Float>(context.sp2px(16f))
 
     /** **** **  binding  ** **** **/
     fun today() {

@@ -8,9 +8,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!--选择字体-->
-        <item name="fontFamily">@font/xk</item>
-
+        <!--默认字体-->
+        <item name="fontFamily">@font/fs</item>
     </style>
 
     <style name="menu_tv_style">
@@ -24,10 +23,10 @@
 
     <style name="tv_size_style">
         <item name="android:layout_width">50dp</item>
-        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_height">20dp</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@drawable/textcolor_white_black_select</item>
-        <item name="background">@drawable/shape_text_select</item>
+<!--        <item name="background">@drawable/shape_text_select</item>-->
     </style>
 
     <style name="pop_anim">

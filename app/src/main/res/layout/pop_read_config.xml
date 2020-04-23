@@ -8,20 +8,24 @@
 
         <variable
             name="read"
-            type="com.xlk.mvvm.viewmode.ReadConfigViewMode" />
+            type="com.xlk.mvvm.viewmodel.ReadConfigViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:background="@color/white">
+
 
         <TextView
             android:id="@+id/text_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginStart="10dp"
+            android:gravity="center"
             android:text="字号"
+            android:textSize="12sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,46 +33,52 @@
         <TextView
             android:id="@+id/textView"
             style="@style/tv_size_style"
+            android:background="@drawable/shape_text_select"
             android:clickable="true"
-            android:text="小"
+            android:focusable="true"
             android:onClick="@{read::smallSize}"
+            android:text="小"
+            android:layout_marginEnd="1dp"
+            android:textSize="12sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
             app:layout_constraintEnd_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="parent"
-            android:focusable="true" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView3"
             style="@style/tv_size_style"
+            android:background="@drawable/shape_text_select"
             android:clickable="true"
-            android:text="中"
+            android:focusable="true"
+            android:layout_marginEnd="1dp"
             android:onClick="@{read::middleSize}"
+            android:text="中"
+            android:textSize="12sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
             app:layout_constraintEnd_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toTopOf="parent"
-            android:focusable="true" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView2"
             style="@style/tv_size_style"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
+            android:background="@drawable/shape_text_select"
             android:clickable="true"
             android:focusable="true"
-            android:text="大"
             android:onClick="@{read::bigSize}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/text_size"
+            android:text="大"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="背景"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:layout_editor_absoluteX="10dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
