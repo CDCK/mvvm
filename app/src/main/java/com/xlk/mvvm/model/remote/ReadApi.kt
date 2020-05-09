@@ -16,7 +16,7 @@ interface ReadApi {
      * @return 获取随机一篇文章
      */
     @get:GET(value = "random")
-    val randomContent: Call<RData>
+    val randomContent: Call<ReadResult>
 
     /**
      * @return 每日一文
@@ -26,7 +26,7 @@ interface ReadApi {
      * 是否有请求体
      */
     @GET("today")
-    fun getTodayContent(@Query("dev") dev: String): Call<RData>
+    fun getTodayContent(@Query("dev") dev: String): Call<ReadResult>
 
     /**
      * https://interface.meiriyiwen.com/article/day?dev=1&date=20170216
@@ -35,6 +35,6 @@ interface ReadApi {
      * @return 获取指定日期内容
      */
     @GET("day")
-    fun getCurrentDateContent(@Query("date") date: String): Call<RData>
+    fun getCurrentDateContent(@Query("date") date: String): Call<ReadResult>
 
 }

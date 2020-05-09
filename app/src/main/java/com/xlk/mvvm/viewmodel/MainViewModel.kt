@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.databinding.ObservableField
 import com.xlk.mvvm.util.LogUtil
 import com.xlk.mvvm.util.sp2px
-import com.xlk.readdemo.RData
+import com.xlk.readdemo.ReadResult
 import com.xlk.readdemo.RetrofitManager
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,9 +41,9 @@ class MainViewModel(context: Context) {
         request(RetrofitManager.readApi().randomContent)
     }
 
-    fun request(call: Call<RData>) {
-        call.enqueue(object : Callback<RData> {
-            override fun onResponse(call: Call<RData>, response: Response<RData>) {
+    fun request(call: Call<ReadResult>) {
+        call.enqueue(object : Callback<ReadResult> {
+            override fun onResponse(call: Call<ReadResult>, response: Response<ReadResult>) {
                 if (response.isSuccessful) {
                     val m = response.body()?.data
                     LogUtil.d("cdck", "获取数据：${m != null}")
@@ -56,7 +56,7 @@ class MainViewModel(context: Context) {
                 }
             }
 
-            override fun onFailure(call: Call<RData>, t: Throwable) {
+            override fun onFailure(call: Call<ReadResult>, t: Throwable) {
 
             }
         })
@@ -76,7 +76,7 @@ class MainViewModel(context: Context) {
         yesterday()
     }
 
-    private fun update(m: RData.DataBean) {
+    private fun update(m: ReadResult.DataBean) {
         title.set(m.title)
         author.set(m.author)
         val prev = m.date?.prev

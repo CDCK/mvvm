@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.menu_yesterday -> mViewModel.yesterday()
             R.id.menu_random -> mViewModel.random()
 //            R.id.menu_collect->mViewMode.random()
-            R.id.menu_setting -> setting()
+//            R.id.menu_setting -> setting()
         }
         drawer_layout.closeDrawer(navigation_view)
         return true

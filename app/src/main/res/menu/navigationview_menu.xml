@@ -20,9 +20,11 @@
     <item
         android:id="@+id/menu_collect"
         android:icon="@drawable/ic_collect_16dp"
+        android:visible="false"
         android:title="我的收藏" />
     <item
         android:id="@+id/menu_setting"
         android:icon="@drawable/ic_settings_16dp"
+        android:visible="false"
         android:title="阅读设置" />
 </menu>

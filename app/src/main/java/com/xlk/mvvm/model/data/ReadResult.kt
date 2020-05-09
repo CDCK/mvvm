@@ -4,7 +4,7 @@ package com.xlk.readdemo
  * Created by xlk on 2019/3/15.
  * https://interface.meiriyiwen.com/article/today?dev=1
  */
-class RData{
+class ReadResult{
 
     var data: DataBean? = null
 
